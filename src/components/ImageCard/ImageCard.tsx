@@ -1,5 +1,10 @@
 import css from './ImageCard.module.css'
-const ImageCard = ({ src, alt }) => {
+
+interface ImageCardProps {
+  src: string;
+  alt: string;
+}
+const ImageCard: React.FC<ImageCardProps> = ({ src, alt}) => {
   return (
     <div className={css.imageContainer}>
       <img className={css.imageCard} src={src} alt={alt} />
