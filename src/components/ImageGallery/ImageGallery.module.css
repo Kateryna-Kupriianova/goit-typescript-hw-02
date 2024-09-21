@@ -1,0 +1,13 @@
+.list{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.item{
+    width: calc((100% - 24px) / 4);
+    aspect-ratio: 4 / 3;    
+     overflow: hidden;
+    box-sizing: border-box;
+}
