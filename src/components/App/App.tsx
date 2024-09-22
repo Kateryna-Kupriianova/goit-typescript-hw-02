@@ -18,24 +18,44 @@ const App = () => {
 
   useEffect(() => {
     if (!query) return;
-
+    interface ImageData {
+        urls: {
+          regular: string;
+        };
+        alt_description: string;
+        user: {
+          name: string;
+        };
+        likes: number;
+        description?: string;
+      }
     const fetchImages = async () => {
       setLoading(true);
       setError(null);
-
+      // interface ImageData {
+      //   urls: {
+      //     regular: string;
+      //   };
+      //   alt_description: string;
+      //   user: {
+      //     name: string;
+      //   };
+      //   likes: number;
+      //   description?: string;
+      // }
       try {
-        const response = await axios.get(
+        const response = await axios.get < { results:ImageData[]} >(
           `https://api.unsplash.com/search/photos?query=${query}&page=${page}&orientation=landscape&client_id=LnZsAA1aXqZdP-LQvBcGTBuHzPUwMb7a8VgX-21IfNE`
         );
-        
-        if (response.data.results.length === 0) {
+        const results = response.data.results;
+        if (results.length === 0) {
           setImages([]);  
           setError(`No images found for "${query}".`);
           return;
         }
-
+      
         setImages(prevImages => {
-          return page === 1 ? response.data.results : [...prevImages, ...response.data.results];
+          return page === 1 ? results : [...prevImages, ...results];
         });
       } catch {
         setError('Failed to fetch images. Please try again later.');
