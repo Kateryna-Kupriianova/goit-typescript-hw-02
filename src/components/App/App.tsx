@@ -18,17 +18,17 @@ const App = () => {
 
   useEffect(() => {
     if (!query) return;
-    interface ImageData {
-        urls: {
-          regular: string;
-        };
-        alt_description: string;
-        user: {
-          name: string;
-        };
-        likes: number;
-        description?: string;
-      }
+    // interface ImageData {
+    //     urls: {
+    //       regular: string;
+    //     };
+    //     alt_description: string;
+    //     user: {
+    //       name: string;
+    //     };
+    //     likes: number;
+    //     description?: string;
+    //   }
     const fetchImages = async () => {
       setLoading(true);
       setError(null);
@@ -44,7 +44,7 @@ const App = () => {
       //   description?: string;
       // }
       try {
-        const response = await axios.get < { results:ImageData[]} >(
+        const response = await axios.get < { results:Image[]} >(
           `https://api.unsplash.com/search/photos?query=${query}&page=${page}&orientation=landscape&client_id=LnZsAA1aXqZdP-LQvBcGTBuHzPUwMb7a8VgX-21IfNE`
         );
         const results = response.data.results;
